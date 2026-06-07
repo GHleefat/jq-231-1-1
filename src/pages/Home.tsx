@@ -5,7 +5,7 @@ import ResultArea from "@/components/ResultArea/ResultArea";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0f0a07] text-[#FFF8E7] overflow-hidden relative">
+    <div className="h-screen bg-[#0f0a07] text-[#FFF8E7] overflow-hidden relative">
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,0,0,0.15),transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(212,175,55,0.08),transparent_50%)]" />
@@ -17,7 +17,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-10 flex flex-col h-screen min-h-0">
         <header className="shrink-0 px-6 py-4 border-b border-[#D4AF37]/20 bg-gradient-to-r from-[#2C1810] via-[#1a0f0a] to-[#2C1810]">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">

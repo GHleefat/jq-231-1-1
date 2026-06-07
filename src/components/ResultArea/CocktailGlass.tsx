@@ -8,6 +8,11 @@ interface Props {
 export default function CocktailGlass({ recipe, showPour = false }: Props) {
   const prefix = recipe.id;
 
+  const liquidFillStyle = {
+    transformOrigin: "bottom",
+    transformBox: "fill-box" as const,
+  };
+
   const getGlassPath = (type: string) => {
     switch (type) {
       case "cocktail":
@@ -32,6 +37,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               fill={recipe.color}
               clipPath={`url(#${prefix}-cocktail-clip)`}
               className={showPour ? "animate-fill" : ""}
+              style={liquidFillStyle}
             />
           </>
         );
@@ -61,6 +67,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               fill={recipe.color}
               clipPath={`url(#${prefix}-highball-clip)`}
               className={showPour ? "animate-fill" : ""}
+              style={liquidFillStyle}
             />
             <rect
               x="35"
@@ -94,6 +101,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               fill={recipe.color}
               clipPath={`url(#${prefix}-rocks-clip)`}
               className={showPour ? "animate-fill" : ""}
+              style={liquidFillStyle}
             />
           </>
         );
@@ -119,6 +127,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               fill={recipe.color}
               clipPath={`url(#${prefix}-hurricane-clip)`}
               className={showPour ? "animate-fill" : ""}
+              style={liquidFillStyle}
             />
           </>
         );
@@ -148,6 +157,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               fill={recipe.color}
               clipPath={`url(#${prefix}-default-clip)`}
               className={showPour ? "animate-fill" : ""}
+              style={liquidFillStyle}
             />
           </>
         );
