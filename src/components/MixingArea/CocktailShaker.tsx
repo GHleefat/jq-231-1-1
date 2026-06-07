@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { AddedIngredient, Recipe, MixAction } from "../../types";
 import { useCocktailStore } from "../../store/useCocktailStore";
 import { recipes } from "../../data/recipes";
@@ -8,10 +8,15 @@ interface Props {
 }
 
 export default function CocktailShaker({ className = "" }: Props) {
-  const { addedIngredients, currentRecipeId, phase, isMixing, mixProgress } =
-    useCocktailStore();
+  const {
+    addedIngredients,
+    currentRecipeId,
+    phase,
+    isMixing,
+    mixProgress,
+    shakeOffset,
+  } = useCocktailStore();
   const shakerRef = useRef<HTMLDivElement>(null);
-  const [shakeOffset, setShakeOffset] = useState({ x: 0, y: 0 });
 
   const recipe = recipes.find((r: Recipe) => r.id === currentRecipeId);
 

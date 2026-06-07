@@ -1,7 +1,7 @@
-import RecipeSelector from '@/components/RecipeSelector/RecipeSelector';
-import LiquorShelf from '@/components/LiquorShelf/LiquorShelf';
-import MixingArea from '@/components/MixingArea/MixingArea';
-import ResultArea from '@/components/ResultArea/ResultArea';
+import RecipeSelector from "@/components/RecipeSelector/RecipeSelector";
+import LiquorShelf from "@/components/LiquorShelf/LiquorShelf";
+import MixingArea from "@/components/MixingArea/MixingArea";
+import ResultArea from "@/components/ResultArea/ResultArea";
 
 export default function Home() {
   return (
@@ -26,7 +26,9 @@ export default function Home() {
                 <h1 className="font-serif text-2xl text-[#D4AF37] tracking-wide">
                   虚拟调酒台
                 </h1>
-                <p className="text-[#FFF8E7]/50 text-xs">Virtual Cocktail Bar</p>
+                <p className="text-[#FFF8E7]/50 text-xs">
+                  Virtual Cocktail Bar
+                </p>
               </div>
             </div>
             <div className="hidden md:flex items-center gap-4 text-xs text-[#FFF8E7]/40">
@@ -37,15 +39,15 @@ export default function Home() {
 
         <RecipeSelector />
 
-        <main className="flex-1 p-4 lg:p-6 overflow-hidden">
-          <div className="max-w-7xl mx-auto h-full grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6" style={{ minHeight: 'calc(100vh - 220px)' }}>
-            <div className="lg:col-span-3 min-h-[400px] lg:min-h-0">
+        <main className="flex-1 p-2 lg:p-3 overflow-hidden flex flex-col min-h-0">
+          <div className="max-w-7xl mx-auto w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-3">
+            <div className="lg:col-span-3 h-full min-h-0">
               <LiquorShelf />
             </div>
-            <div className="lg:col-span-6 min-h-[500px] lg:min-h-0">
+            <div className="lg:col-span-6 h-full min-h-0">
               <MixingArea />
             </div>
-            <div className="lg:col-span-3 min-h-[400px] lg:min-h-0">
+            <div className="lg:col-span-3 h-full min-h-0">
               <ResultArea />
             </div>
           </div>

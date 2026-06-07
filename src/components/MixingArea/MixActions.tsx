@@ -13,6 +13,7 @@ export default function MixActions() {
     mixProgress,
     startMixing,
     updateMixProgress,
+    updateShakeOffset,
     finishCocktail,
     clearShaker,
   } = useCocktailStore();
@@ -84,14 +85,19 @@ export default function MixActions() {
       if (!lastPosRef.current || !recipe) return;
 
       if (recipe.action === "shake") {
-        const dx = Math.abs(moveEvent.clientX - lastPosRef.current.x);
-        const dy = Math.abs(moveEvent.clientY - lastPosRef.current.y);
-        accumulatedRef.current += dx + dy;
+        const dx = moveEvent.clientX - lastPosRef.current.x;
+        const dy = moveEvent.clientY - lastPosRef.current.y;
+        const absDx = Math.abs(dx);
+        const absDy = Math.abs(dy);
+        accumulatedRef.current += absDx + absDy;
         const progress = Math.min(
           100,
           (accumulatedRef.current / (recipe.actionTarget * 100)) * 100,
         );
         updateMixProgress(progress);
+        const shakeX = Math.max(-12, Math.min(12, dx * 0.8));
+        const shakeY = Math.max(-8, Math.min(8, dy * 0.5));
+        updateShakeOffset({ x: shakeX, y: shakeY });
       } else if (recipe.action === "stir" && circleCenterRef.current) {
         const dx = moveEvent.clientX - circleCenterRef.current.x;
         const dy = moveEvent.clientY - circleCenterRef.current.y;
@@ -117,6 +123,7 @@ export default function MixActions() {
       setIsPerforming(false);
       lastPosRef.current = null;
       lastAngleRef.current = null;
+      updateShakeOffset({ x: 0, y: 0 });
       document.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseup", handleUp);
     };

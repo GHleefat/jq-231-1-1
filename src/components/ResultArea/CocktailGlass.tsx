@@ -1,4 +1,4 @@
-import { Recipe } from '../../types';
+import { Recipe } from "../../types";
 
 interface Props {
   recipe: Recipe;
@@ -6,9 +6,11 @@ interface Props {
 }
 
 export default function CocktailGlass({ recipe, showPour = false }: Props) {
+  const prefix = recipe.id;
+
   const getGlassPath = (type: string) => {
     switch (type) {
-      case 'cocktail':
+      case "cocktail":
         return (
           <>
             <path
@@ -18,7 +20,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               strokeWidth="1.5"
             />
             <defs>
-              <clipPath id="cocktail-clip">
+              <clipPath id={`${prefix}-cocktail-clip`}>
                 <path d="M42 22 L78 22 L69 78 Q60 88 60 88 L60 90 Q60 88 51 78 Z" />
               </clipPath>
             </defs>
@@ -28,12 +30,12 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               width="40"
               height="60"
               fill={recipe.color}
-              clipPath="url(#cocktail-clip)"
-              className={showPour ? 'animate-fill' : ''}
+              clipPath={`url(#${prefix}-cocktail-clip)`}
+              className={showPour ? "animate-fill" : ""}
             />
           </>
         );
-      case 'highball':
+      case "highball":
         return (
           <>
             <rect
@@ -47,7 +49,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               strokeWidth="1.5"
             />
             <defs>
-              <clipPath id="highball-clip">
+              <clipPath id={`${prefix}-highball-clip`}>
                 <rect x="44" y="17" width="32" height="91" rx="2" />
               </clipPath>
             </defs>
@@ -57,13 +59,20 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               width="32"
               height="83"
               fill={recipe.color}
-              clipPath="url(#highball-clip)"
-              className={showPour ? 'animate-fill' : ''}
+              clipPath={`url(#${prefix}-highball-clip)`}
+              className={showPour ? "animate-fill" : ""}
             />
-            <rect x="35" y="110" width="50" height="8" rx="2" fill="rgba(255,255,255,0.2)" />
+            <rect
+              x="35"
+              y="110"
+              width="50"
+              height="8"
+              rx="2"
+              fill="rgba(255,255,255,0.2)"
+            />
           </>
         );
-      case 'rocks':
+      case "rocks":
         return (
           <>
             <path
@@ -73,7 +82,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               strokeWidth="1.5"
             />
             <defs>
-              <clipPath id="rocks-clip">
+              <clipPath id={`${prefix}-rocks-clip`}>
                 <path d="M40 22 L80 22 L76 88 L72 92 L48 92 L44 88 Z" />
               </clipPath>
             </defs>
@@ -83,12 +92,12 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               width="40"
               height="57"
               fill={recipe.color}
-              clipPath="url(#rocks-clip)"
-              className={showPour ? 'animate-fill' : ''}
+              clipPath={`url(#${prefix}-rocks-clip)`}
+              className={showPour ? "animate-fill" : ""}
             />
           </>
         );
-      case 'hurricane':
+      case "hurricane":
         return (
           <>
             <path
@@ -98,7 +107,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               strokeWidth="1.5"
             />
             <defs>
-              <clipPath id="hurricane-clip">
+              <clipPath id={`${prefix}-hurricane-clip`}>
                 <path d="M60 32 Q42 40 37 60 Q32 84 46 98 L55 103 L65 103 L74 98 Q88 84 83 60 Q78 40 60 32 Z" />
               </clipPath>
             </defs>
@@ -108,8 +117,8 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               width="50"
               height="65"
               fill={recipe.color}
-              clipPath="url(#hurricane-clip)"
-              className={showPour ? 'animate-fill' : ''}
+              clipPath={`url(#${prefix}-hurricane-clip)`}
+              className={showPour ? "animate-fill" : ""}
             />
           </>
         );
@@ -127,7 +136,7 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               strokeWidth="1.5"
             />
             <defs>
-              <clipPath id="default-clip">
+              <clipPath id={`${prefix}-default-clip`}>
                 <rect x="44" y="22" width="32" height="76" rx="3" />
               </clipPath>
             </defs>
@@ -137,8 +146,8 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
               width="32"
               height="68"
               fill={recipe.color}
-              clipPath="url(#default-clip)"
-              className={showPour ? 'animate-fill' : ''}
+              clipPath={`url(#${prefix}-default-clip)`}
+              className={showPour ? "animate-fill" : ""}
             />
           </>
         );
@@ -149,20 +158,20 @@ export default function CocktailGlass({ recipe, showPour = false }: Props) {
     <div className="relative flex items-center justify-center">
       <svg viewBox="0 0 120 140" className="w-32 h-40 drop-shadow-2xl">
         <defs>
-          <linearGradient id="glass-reflect" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient
+            id={`${prefix}-glass-reflect`}
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
             <stop offset="0%" stopColor="rgba(255,255,255,0)" />
             <stop offset="20%" stopColor="rgba(255,255,255,0.3)" />
             <stop offset="40%" stopColor="rgba(255,255,255,0)" />
           </linearGradient>
         </defs>
         {getGlassPath(recipe.glassType)}
-        <ellipse
-          cx="60"
-          cy="20"
-          rx="20"
-          ry="3"
-          fill="rgba(255,255,255,0.3)"
-        />
+        <ellipse cx="60" cy="20" rx="20" ry="3" fill="rgba(255,255,255,0.3)" />
       </svg>
       {showPour && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">

@@ -1,4 +1,10 @@
-export type IngredientType = 'spirit' | 'liqueur' | 'juice' | 'syrup' | 'garnish' | 'other';
+export type IngredientType =
+  | "spirit"
+  | "liqueur"
+  | "juice"
+  | "syrup"
+  | "garnish"
+  | "other";
 
 export interface Ingredient {
   id: string;
@@ -21,7 +27,7 @@ export interface RecipeIngredient {
   tolerance: number;
 }
 
-export type MixAction = 'shake' | 'stir' | 'build';
+export type MixAction = "shake" | "stir" | "build";
 
 export interface Recipe {
   id: string;
@@ -36,10 +42,10 @@ export interface Recipe {
   garnish: string;
   isHidden?: boolean;
   unlockCondition?: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: "easy" | "medium" | "hard";
 }
 
-export type GamePhase = 'selecting' | 'adding' | 'mixing' | 'finished';
+export type GamePhase = "selecting" | "adding" | "mixing" | "finished";
 
 export interface ScoreResult {
   score: number;
@@ -54,6 +60,7 @@ export interface CocktailState {
   phase: GamePhase;
   isMixing: boolean;
   mixProgress: number;
+  shakeOffset: { x: number; y: number };
   score: ScoreResult | null;
   unlockedRecipes: string[];
   completedRecipes: string[];

@@ -14,6 +14,7 @@ interface CocktailActions {
   updateIngredientAmount: (ingredientId: string, amount: number) => void;
   startMixing: () => void;
   updateMixProgress: (progress: number) => void;
+  updateShakeOffset: (offset: { x: number; y: number }) => void;
   finishCocktail: () => void;
   resetGame: () => void;
   clearShaker: () => void;
@@ -50,6 +51,7 @@ export const useCocktailStore = create<CocktailState & CocktailActions>(
     phase: "selecting",
     isMixing: false,
     mixProgress: 0,
+    shakeOffset: { x: 0, y: 0 },
     score: null,
     unlockedRecipes: savedProgress.unlocked,
     completedRecipes: savedProgress.completed,
@@ -61,6 +63,7 @@ export const useCocktailStore = create<CocktailState & CocktailActions>(
         addedIngredients: [],
         isMixing: false,
         mixProgress: 0,
+        shakeOffset: { x: 0, y: 0 },
         score: null,
       });
     },
@@ -105,11 +108,20 @@ export const useCocktailStore = create<CocktailState & CocktailActions>(
     },
 
     startMixing: () => {
-      set({ phase: "mixing", isMixing: true, mixProgress: 0 });
+      set({
+        phase: "mixing",
+        isMixing: true,
+        mixProgress: 0,
+        shakeOffset: { x: 0, y: 0 },
+      });
     },
 
     updateMixProgress: (progress) => {
       set({ mixProgress: Math.min(100, Math.max(0, progress)) });
+    },
+
+    updateShakeOffset: (offset) => {
+      set({ shakeOffset: offset });
     },
 
     finishCocktail: () => {
@@ -149,6 +161,7 @@ export const useCocktailStore = create<CocktailState & CocktailActions>(
       set({
         phase: "finished",
         isMixing: false,
+        shakeOffset: { x: 0, y: 0 },
         score: scoreResult,
         completedRecipes: newCompleted,
         unlockedRecipes: newUnlocked,
@@ -162,6 +175,7 @@ export const useCocktailStore = create<CocktailState & CocktailActions>(
         phase: "selecting",
         isMixing: false,
         mixProgress: 0,
+        shakeOffset: { x: 0, y: 0 },
         score: null,
       });
     },
@@ -171,6 +185,7 @@ export const useCocktailStore = create<CocktailState & CocktailActions>(
         addedIngredients: [],
         isMixing: false,
         mixProgress: 0,
+        shakeOffset: { x: 0, y: 0 },
         score: null,
       });
     },
